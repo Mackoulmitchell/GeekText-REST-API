@@ -1,10 +1,10 @@
 package com.springboot.app.Path;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
+//import java.sql.Statement;
 
 public class BaseMethods {
     final String url = "";
@@ -41,15 +41,14 @@ public class BaseMethods {
     }
         
     public ResultSet SQLQuery(String query) {
-
     	ResultSet result = null;
         try (Connection connection = DriverManager.getConnection(getURL(), getUsername(), getDBPassword())) {
             Statement statement = connection.createStatement();
             result = statement.executeQuery(query);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return result;
     }
     
@@ -68,22 +67,23 @@ public class BaseMethods {
     }
     
     
-    /*boolean isTableEmpty(String Table) {  //Needs editing, calling this function invokes ResultSet::Next, which causes any ResultSet using this function to iterate (This is an error).
-        try (Connection connection = DriverManager.getConnection(getURL(), getUsername(), getDBPassword())) {
-        	
-            String Query= "SELECT * FROM " + Table + "WHERE USER_ID = " + this.getUSER_ID() + ";";
+    public boolean isTableEmpty(String Table) {  //Needs editing, calling this function invokes ResultSet::Next, which causes any ResultSet using this function to iterate (This is an error).
+        try {
+            //String Query = "SELECT * FROM " + Table + " WHERE USER_ID = " + this.getUSER_ID() + ";";
+            String Query = "SELECT CASE WHEN EXISTS (SELECT * FROM "+ Table + " LIMIT 1) THEN 1 ELSE 0 END";
             ResultSet queryResult = SQLQuery(Query);
-            
-            if(queryResult.next()) {
-            	return true;
+            System.out.println("NEXT");
+            queryResult.next();
+            if(queryResult.getInt("case") == 1){
+            	return false;
             }
-            else return false;
-        
+            else return true;
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
-    }*/
+    }
     
 
 
