@@ -38,9 +38,9 @@ Users can access the following API methods through web URLs:
 
 '/addBook': Takes eight parameters (String author, String title, int isbn, double cost, String description, String publisher, int year, int copiesSold) in a specific order. Adds a book to the database with the given attributes. 
 
-'/AddToShoppingCart': Takes two parameters (String isbn, int quantity). Adds a book to the shopping cart using the isbn parameter, of the quantity specified in the 'quantity' parameter.
+'/Cart/Add': Takes two parameters (String isbn, int quantity). Adds a book to the shopping cart using the isbn parameter, of the quantity specified in the 'quantity' parameter. Will merge duplicate database entries.
 
-'/Cart/Remove': Removes a book from the user's shopping cart. (In development)
+'/Cart/Remove': Removes a book from the user's shopping cart.
 
 '/Cart/': Takes a String 'id' as a parameter. Returns the user's shopping cart as an ArrayList of Strings.
 
