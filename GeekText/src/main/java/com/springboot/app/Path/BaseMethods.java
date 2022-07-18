@@ -7,9 +7,9 @@ import java.sql.*;
 //import java.sql.Statement;
 
 public class BaseMethods {
-    final String url = "jdbc:postgresql://localhost:5432/ProjectCEN";
-    final String username = "postgres";
-    final String DBPassword = "AAAAA";
+    final String url = "";
+    final String username = "";
+    final String DBPassword = "";
     private String USER_ID;
     
     /*
