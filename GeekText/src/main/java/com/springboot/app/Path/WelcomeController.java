@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomeController {
 	@GetMapping("/welcome")
 	public String welcome() {
-		return "FUCK YOU TENNIS I DID IT";
+		return "Test Successful.";
 	}
 }

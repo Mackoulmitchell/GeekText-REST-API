@@ -20,7 +20,7 @@ public class BookBrowsing extends BaseMethods {//Class extends ConnectAndMenu fo
             while (result.next()) {
             	//Adds records for the book table to the 'data' ArrayList based on genre.
                 data.add("ISBN: " + result.getString("isbn") + " | Genre: " + result.getString("genre") + " | Name: " + result.getString("_name") + " | Price: " + result.getString("price") + " | Author: " + result.getString("author") + " | Publisher: " + 
-                		result.getString("publisher") + " | Year Published: " + result.getString("year_published") + " | Copies Sold: " + result.getString("copies_sold") + " | Book Description: " + result.getString("book_description") + " ||| ");
+                		result.getString("publisher") + " | Year Published: " + result.getString("year_published") + " | Copies Sold: " + result.getString("copies_sold") + " | Book Description: " + result.getString("book_description"));
             }
             
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class BookBrowsing extends BaseMethods {//Class extends ConnectAndMenu fo
             Result = SQLQuery(Query);
 
             while (Result.next()) {
-            	DataList.add("Name: " + Result.getString("_name") + " | Copies Sold: " + Result.getString("copies_sold") + " ||| ");
+            	DataList.add("Name: " + Result.getString("_name") + " | Copies Sold: " + Result.getString("copies_sold"));
             }
 
         } catch (Exception e) {
@@ -69,7 +69,7 @@ public class BookBrowsing extends BaseMethods {//Class extends ConnectAndMenu fo
         	while(Result.next()){
         		
                 // Adds the fetched record of each book in the rating requirements onto the ArrayList 'DataList' 
-        		DataList.add("Book Name: " + Result.getString("_name") + " | Author: " + Result.getString("author") + " | Rating: " + Result.getString("rating") + " ||| ");
+        		DataList.add("Book Name: " + Result.getString("_name") + " | Author: " + Result.getString("author") + " | Rating: " + Result.getString("rating"));
             
         	}
         }
@@ -91,7 +91,7 @@ public class BookBrowsing extends BaseMethods {//Class extends ConnectAndMenu fo
 	        try {
 
 	            if (quantity < 0 || quantity == 0){
-	                System.out.println(" Please enter valid integer greater then 0");
+	                System.out.println("Please enter a valid integer greater then 0");
 	            }
 	            
 	            //Database query to fetch the specified quantity of books.
@@ -101,7 +101,7 @@ public class BookBrowsing extends BaseMethods {//Class extends ConnectAndMenu fo
 	            
 	            while(Result.next()){
 	                //Adds each book to an ArrayList to send to the end user.
-	            	DataList.add(" Book Name: " + Result.getString("_name") + " | Author: " + Result.getString("author") + " | Genre: " + Result.getString("Genre") + " ||| ");
+	            	DataList.add(" Book Name: " + Result.getString("_name") + " | Author: " + Result.getString("author") + " | Genre: " + Result.getString("Genre"));
 	            }
 	        }
 	        catch (Exception e){
