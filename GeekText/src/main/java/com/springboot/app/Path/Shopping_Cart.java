@@ -36,7 +36,7 @@ public class Shopping_Cart extends BaseMethods{
             String duplicateCheckString = "SELECT * FROM shopping_cart WHERE ISBN = '" + isbn + "';";
             ResultSet duplicateCheck = SQLQuery(duplicateCheckString);
         	
-        	if(duplicateCheck.next()) {
+        	if(duplicateCheck.next()) { //Checks the shopping_cart table against the book being added to see if a duplicate book is being added to the cart.
         		
         		int cartQuantity = duplicateCheck.getInt("quantity");
         		int newQuantity = cartQuantity + quantity;
@@ -46,7 +46,7 @@ public class Shopping_Cart extends BaseMethods{
         		
         		return ("Successfully Added " + cartQuantity + " copies of " + Book_Name + " to the cart!");
         	}
-        	else {
+        	else { //If a duplicate book is not found, it adds the book to the shopping_cart table on its own.
         		
 
         		String Update = "INSERT INTO shopping_cart (ISBN, USER_ID, \"Quantity\", _name) VALUES ('" + isbn + "', " + id + ", " + quantity + ", '" + Book_Name + "');";
@@ -77,9 +77,10 @@ public class Shopping_Cart extends BaseMethods{
     	
     	ArrayList<String> cart = new ArrayList<String>();
     	
-    	cart.add("The shopping cart for this user is empty. Try adding something to the cart!");
-    	System.out.println("Checking Shopping Cart if it's empty.");
-        if (isTableEmpty("shopping_cart")) {
+    	cart.add("The shopping cart for this user is empty. Try adding something to the cart!"); //Holds an error string in the cart and prints it if the cart is empty,
+    	System.out.println("Checking Shopping Cart if it's empty.");  							 //otherwise prints the shopping cart.
+        
+    	if (isTableEmpty("shopping_cart")) {
           return cart;
         }
         cart.remove(0);
@@ -91,7 +92,7 @@ public class Shopping_Cart extends BaseMethods{
     		String Query = "SELECT * FROM SHOPPING_CART WHERE USER_ID = " + id + ";";
             ResultSet result = SQLQuery(Query);
             
-            while (result.next()) { //Continues printing the contents of database rows until ResultSet reaches the end.
+            while (result.next()) { //Adds the ISBN, Quantity, and Name of each book to the ArrayList until ResultSet finishes adding the last row.
                 
             	String Queried_ISBN = result.getString("isbn");
                 int Queried_QUANTITY = result.getInt("Quantity");
