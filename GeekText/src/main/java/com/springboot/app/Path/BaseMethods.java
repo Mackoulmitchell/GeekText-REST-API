@@ -7,25 +7,11 @@ import java.sql.*;
 //import java.sql.Statement;
 
 public class BaseMethods {
-    final String url = "jdbc:postgresql://localhost:5432/ProjectCEN";
-    final String username = "postgres";
-    final String DBPassword = "or8016ES";
+    final String url = "";
+    final String username = "";
+    final String DBPassword = "";
     private String USER_ID;
     
-    /*
-    
-    ConnectAndMenu() {
-        this.USER_ID = null;
-    }
-    
-    ConnectAndMenu(String IdArg) {
-        this.USER_ID = IdArg;
-    }
-
-    ConnectAndMenu(String IdArg, String PassArg) { //Meant to be used when the profile integration is complete.
-        this.USER_ID = IdArg;
-    }
-    */
     
     public String getUSER_ID() {
         return USER_ID;
@@ -40,7 +26,7 @@ public class BaseMethods {
     	return DBPassword;
     }
         
-    public ResultSet SQLQuery(String query) {
+    public ResultSet SQLQuery(String query) { //Should be used for retrieving data from the database.
     	ResultSet result = null;
         try (Connection connection = DriverManager.getConnection(getURL(), getUsername(), getDBPassword())) {
             Statement statement = connection.createStatement();
@@ -52,7 +38,7 @@ public class BaseMethods {
         return result;
     }
     
-    public void SQLUpdate(String update) {
+    public void SQLUpdate(String update) { //Function should be called when inserting or dropping elements of the database
     	
     	int result;
         try (Connection connection = DriverManager.getConnection(getURL(), getUsername(), getDBPassword())) {
@@ -67,9 +53,8 @@ public class BaseMethods {
     }
     
     
-    public boolean isTableEmpty(String Table) {  //Needs editing, calling this function invokes ResultSet::Next, which causes any ResultSet using this function to iterate (This is an error).
+    public boolean isTableEmpty(String Table) { //Checks to see if a queried table is empty or not
         try {
-            //String Query = "SELECT * FROM " + Table + " WHERE USER_ID = " + this.getUSER_ID() + ";";
             String Query = "SELECT CASE WHEN EXISTS (SELECT * FROM "+ Table + " LIMIT 1) THEN 1 ELSE 0 END";
             ResultSet queryResult = SQLQuery(Query);
             System.out.println("NEXT");
