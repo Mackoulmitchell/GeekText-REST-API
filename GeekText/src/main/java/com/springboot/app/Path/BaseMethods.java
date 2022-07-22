@@ -7,9 +7,9 @@ import java.sql.*;
 //import java.sql.Statement;
 
 public class BaseMethods {
-    final String url = "";
-    final String username = "";
-    final String DBPassword = "";
+    final String url = "jdbc:postgresql://localhost:5432/ProjectCEN";
+    final String username = "postgres";
+    final String DBPassword = "or8016ES";
     private String USER_ID;
     
     /*
@@ -74,10 +74,7 @@ public class BaseMethods {
             ResultSet queryResult = SQLQuery(Query);
             System.out.println("NEXT");
             queryResult.next();
-            if(queryResult.getInt("case") == 1){
-            	return false;
-            }
-            else return true;
+            return queryResult.getInt("case") != 1;
             
         } catch (SQLException e) {
             e.printStackTrace();
