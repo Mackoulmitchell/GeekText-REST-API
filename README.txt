@@ -45,3 +45,5 @@ Users can access the following API methods through web URLs:
 '/cart/': Takes a String 'id' as a parameter. Returns the user's shopping cart as an ArrayList of Strings.
 
 '/user': Takes a String 'username' as a parameter. Retrieves the details of the user (Name, Email, Password, and Home Address).
+
+'/User/Insert': Takes Strings 'name', 'email', 'password', 'homeAdd', 'card'. Adds a new user to the database.
